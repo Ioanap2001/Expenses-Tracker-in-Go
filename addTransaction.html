@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAR - Kreditkartenabrechnung</title>
+</head>
+<body>
+    <h1>Kreditkartentransaktion hinzufügen</h1>
+    <form action="/addTransaction" method="post">
+        <label for="amount">Betrag:</label>
+        <input type="text" id="amount" name="amount"><br>
+
+        <label for="description">Beschreibung:</label>
+        <input type="text" id="description" name="description"><br>
+
+        <label for="category">Kategorie:</label>
+        <input type="text" id="category" name="category"><br>
+
+        <label for="date">Datum (YYYY-MM-DD):</label>
+        <input type="text" id="date" name="date" value="{{.Today}}"><br>
+
+        <input type="submit"  class="button" value="Absenden">
+    </form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreditkartenabrechnung - Monatliche Ausgaben</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h1>Monatliche Ausgaben berechnen</h1>
+
+<table>
+    <tr>
+        <th>Kategorie</th>
+        <th>Gesamtausgaben</th>
+    </tr>
+    {{range .Expenses}}
+    <tr>
+        <td>{{.Category}}</td>
+        <td>{{.Total}}</td>
+    </tr>
+    {{end}}
+    <tr>
+        <td><strong>Gesamtsumme:</strong></td>
+        <td><strong>{{.TotalExpenses}}</strong></td>
+    </tr>
+</table>
+<form action="/export" method="post">
+    <button type="submit" class="button">Daten in CSV exportieren</button>
+</form>
+<iframe id="download_frame" name="download_frame" style="display:none;"></iframe>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses Data</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Expenses Data</h1>
+    <canvas id="expensesChart" width="400" height="400"></canvas>
+
+    <script>
+        // Fetch expenses data from server
+        fetch('/expensesData')
+            .then(response => response.json())
+            .then(data => {
+                // Extract categories and amounts from data
+                const categories = Object.keys(data);
+                const amounts = Object.values(data);
+
+                // Create a new Chart
+                const ctx = document.getElementById('expensesChart').getContext('2d');
+                const expensesChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: categories,
+                        datasets: [{
+                            label: 'Expenses',
+                            data: amounts,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching expenses data:', error);
+            });
+    </script>
+</body>
+</html>
